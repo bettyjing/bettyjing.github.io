@@ -167,3 +167,7 @@ overflow: none;
   -o-transform-origin: 100% 100%;
   transform-origin: 100% 100%;
 }
+
+.cute{
+  margin-bottom: 0;
+}
