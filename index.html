@@ -1,172 +1,148 @@
-body{
-margin: 0;
-padding: 0;
-width: 100%;
-}
+<html>
 
-h1 {
-font-family: 'Galada', cursive;
-font-size: 8em;
-color: black;
-transform: translate(-50%,-50%);
-position: absolute;
-top: calc(50% - 50px);
-left: 50%;
-}
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>betty</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+    <link href='https://fonts.googleapis.com/css?family=Wellfleet' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Wellfleet' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Arvo:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Goudy+Bookletter+1911' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Galada" rel="stylesheet">
+    <script>
+        $(document).ready(function() {
+            $('a[href*=#]').each(function() {
+                if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname &&
+                    this.hash.replace(/#/, '')) { 
+                    var $targetId = $(this.hash),
+                        $targetAnchor = $('[name=' + this.hash.slice(1) + ']');
+                    var $target = $targetId.length ? $targetId : $targetAnchor.length ? $targetAnchor : false;
+                    if ($target) {
+                        var targetOffset = $target.offset().top;
 
-h2 {
-font-family:"Arvo";
-font-weight: normal;
-font-size: 40px;
-text-align: center;
-color: #fff;
-margin: 0;
-padding: 0;
-}
 
-h3 {
-font-family:"Arvo";
-font-weight: normal;
-font-size: 46px;
-text-align: center;
-margin: 10vh 0;
-padding: 0;
-z-index: 1;
-position: relative;
-}
+                        $(this).click(function() {
+                            $("#nav li a").removeClass("active");
+                            $(this).addClass('active');
+                            $('html, body').animate({
+                                scrollTop: targetOffset
+                            }, 1000);
+                            return false;
+                        });
+                    }
+                }
+            });
 
-#left {
-font-family: Oswald;
-font-size: 5vh;
-float: left;
-padding: 40px;
-width: 30%;
-}
+        });
+    </script>
+</head>
 
-.center { margin: 0 auto; }
-.content{ margin: 0 auto; width: 100%; height: 100%; overflow: hidden; }
-.clear { clear: both; }
+<body>
+    <!----- HEADER START--->
+    <header id="header">
+        <div class="content">
+            <div id="logo"></div>
+            <nav id="nav">
+                <ul>
+                    <li><a href="#slide1" class="active" title="Main Menu">Main Menu</a></li>
+                    <li><a href="#slide2" title="About Me">About</a></li>
+                    <li><a href="#slide3" title="Contact Me">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <!----- SLIDES START --->
+    <div id="slide1">
+        <div class="main">
+            <h1>Betty Jing</h1>
+             <canvas id ="mycanvas" width="100%" height="100%"></canvas>
+        </div>
+    </div>
+    <div id="slide2">
+                <h3 id = "left">I'm currently a software engineer at SAP Labs where I work on developing new features for our retail application.
+                I'm interested in natural language processing, fashion, human computer interaction, and education. </h3>
+    </div>
+    <div id="slide3">
+        <div>
+                <h3 class="quotes">
+                  <a href="mailto:ibettyjingi@gmail.com"><img src = "http://i.imgur.com/5AsHbaJ.png"/></a>
+                </h3>
+                <div id = "cute">
+                <div id="heart"></div>
+                <img src = "http://i.imgur.com/FleWUfc.png"/>
+              </div>
+        </div>
+    </div>
 
-#header {
-width: 100%;
-background: rgba(242,203,213,.8);
-height: 80px;
-position: fixed;
-margin-top: 30px;
-}
+    <script>
+      var canvas = document.getElementById("mycanvas");
+    var ctx = canvas.getContext("2d");
 
-#nav { width: 410px; float: right; margin-top: 20px; }
-#logo a { color: #fff; text-decoration: none; float: left; font-size: 30px; margin-top: 20px; color: #fff; font-family:"Wellfleet"; font-weight: bold; }
+    var dots=[];
+    var numDots = 50;
+    var width = document.body.clientWidth;
+    var height =document.body.clientHeight;
+    canvas.width = document.body.clientWidth; //document.width is obsolete
+    canvas.height = document.body.clientHeight;
+    var bounce = -1;
+    for(var i=0 ; i<numDots ; i++){
+      dots.push({
+        x : Math.random() * width,
+        y : Math.random() * height,
+        vx : Math.random() * 10-5,
+        vy : Math.random() * 10-5,
+      })
+    }
 
-#nav ul{
-list-style: none;
-display: block;
-margin: 0 auto;
-list-style: none;
-}
+    function draw() {
+        ctx.clearRect(0, 0, width, height);
+        var j, dot;
+        for(j = 0; j < numDots; j++) {
+            dot = dots[j];
+            ctx.beginPath();
+            ctx.arc(dot.x, dot.y, 3, 0, Math.PI * 2, false);
+            ctx.fillStyle = "rgb("+
+            Math.floor(Math.random()*256)+","+
+            Math.floor(Math.random()*256)+","+
+            Math.floor(Math.random()*256)+")";
+            ctx.fill();
+            //ctx.stroke();
+        }
+    }
 
-#nav li{
-margin-top: 9px;
-float: left;
-padding-left: 21px;
-}
+    function update(){
+      var i,dot;
+      for( i=0 ; i< numDots ; i++){
+        dot = dots[i];
+        dot.x += dot.vx;
+        dot.y += dot.vy;
 
-#nav li a { color: black; opacity:0.6; font-size: 16px; text-decoration: none; font-family: 'Wellfleet'; }
-#nav li a.active { color: black; opacity:1; border-bottom: 2px solid #fff; }
-#nav li a:hover { color: black; opacity:1; }
+        if(dot.x >width){
+          dot.x = width;
+          dot.vx *= bounce;
+        }else if(dot.x <0){
+          dot.x = 0;
+          dot.vx *= bounce;
+        }
 
-.quotes {
-font-family: Oswald;
-font-size: 40px;
-padding: 8vh;
-}
+        if(dot.y > height){
+          dot.y = height;
+          dot.vy *= bounce;
+        }else if(dot.y<0){
+          dot.y = 0;
+          dot.vy *= bounce;
+        }
+      }
+    }
 
-#slide1, #slide2{ width: 100%; }
-#slide1{
-color: #fff;
-height: 100vh;
-margin: 0;
-background-size: cover;
-overflow: hidden;
-}
-#slide2{
-background:url("http://i.imgur.com/57L2zEt.png") 50% 0 no-repeat fixed;
-color: #333333;
-height: 100vh;
-margin: 0 auto;
-overflow: hidden;
-}
-#slide3{
-background-color: #fff;
-color: #333333;
-overflow: none;
-}
-@keyframes heartbeat {
-  0% {
-    transform: scale( .75);
-  }
-  20% {
-    transform: scale( 1);
-  }
-  40% {
-    transform: scale( .75);
-  }
-  60% {
-    transform: scale( 1);
-  }
-  80% {
-    transform: scale( .75);
-  }
-  100% {
-    transform: scale( .75);
-  }
-}
+    setInterval(function() {
+        update();
+        draw();
+    }, 1000/24);
+    </script>
+    <!----- SLIDES END --->
+</body>
 
-#heart {
-  position: relative;
-  width: 100px;
-  height: 90px;
-  animation: heartbeat 1s infinite;
-
-}
-
-#heart:before,
-#heart:after {
-  position: absolute;
-  content: "";
-  left: 50px;
-  top: 0;
-  width: 50px;
-  height: 80px;
-  background: rgba(242,203,213,.8);
-  -moz-border-radius: 50px 50px 0 0;
-  border-radius: 50px 50px 0 0;
-  -webkit-transform: rotate(-45deg);
-  -moz-transform: rotate(-45deg);
-  -ms-transform: rotate(-45deg);
-  -o-transform: rotate(-45deg);
-  transform: rotate(-45deg);
-  -webkit-transform-origin: 0 100%;
-  -moz-transform-origin: 0 100%;
-  -ms-transform-origin: 0 100%;
-  -o-transform-origin: 0 100%;
-  transform-origin: 0 100%;
-}
-
-#heart:after {
-  left: 0;
-  -webkit-transform: rotate(45deg);
-  -moz-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
-  -o-transform: rotate(45deg);
-  transform: rotate(45deg);
-  -webkit-transform-origin: 100% 100%;
-  -moz-transform-origin: 100% 100%;
-  -ms-transform-origin: 100% 100%;
-  -o-transform-origin: 100% 100%;
-  transform-origin: 100% 100%;
-}
-
-.cute{
-  margin-bottom: 0;
-}
+</html>
