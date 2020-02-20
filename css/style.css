@@ -78,7 +78,8 @@ padding-left: 21px;
 .quotes {
 font-family: Oswald;
 font-size: 40px;
-padding: 8vh;
+margin: 0 auto;
+width: 100px;
 }
 
 #slide1, #slide2 #slide3{ width: 100%; }
@@ -103,6 +104,16 @@ color: #333333;
 overflow: hidden;
 margin: 0 auto;
 background-size: cover;
+display: table;
+  width: 100%;
+}
+
+#contentSlide3{
+    width: 100%;
+  bottom: 0;
+  height: 100vh;
+  vertical-align: bottom;
+  display: table-cell;
 }
 @keyframes heartbeat {
   0% {
