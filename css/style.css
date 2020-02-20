@@ -38,10 +38,17 @@ position: relative;
 
 #left {
 font-family: Oswald;
-font-size: 5vh;
+font-size: 2rem;
 float: left;
 padding: 40px;
 width: 30%;
+}
+
+@media only screen and (max-width: 767px) {
+  html {
+      /* Reducing base font size will reduce all rem sizes */
+      font-size: 13px;
+    }
 }
 
 .center { margin: 0 auto; }
