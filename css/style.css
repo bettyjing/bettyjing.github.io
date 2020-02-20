@@ -47,6 +47,15 @@ width: 30%;
 .content{ margin: 0 auto; width: 100%; height: 100%; overflow: hidden; }
 .clear { clear: both; }
 
+.content2{
+  margin: 0 auto; 
+  width: 100%; 
+  height: 100%; 
+  overflow: hidden;
+  vertical-align: bottom;
+  display: table-cell;
+}
+
 #header {
 width: 100%;
 background: rgba(242,203,213,.8);
