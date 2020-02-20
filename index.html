@@ -20,8 +20,6 @@
                     var $target = $targetId.length ? $targetId : $targetAnchor.length ? $targetAnchor : false;
                     if ($target) {
                         var targetOffset = $target.offset().top;
-
-
                         $(this).click(function() {
                             $("#nav li a").removeClass("active");
                             $(this).addClass('active');
