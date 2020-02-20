@@ -81,7 +81,7 @@ font-size: 40px;
 padding: 8vh;
 }
 
-#slide1, #slide2{ width: 100%; }
+#slide1, #slide2 #slide3{ width: 100%; }
 #slide1{
 color: #fff;
 height: 100vh;
@@ -94,6 +94,7 @@ background:url("http://i.imgur.com/57L2zEt.png") 50% 0 no-repeat fixed;
 color: #333333;
 height: 100vh;
 margin: 0 auto;
+background-size: cover;
 overflow: hidden;
 }
 #slide3{
@@ -101,6 +102,7 @@ background-color: #fff;
 color: #333333;
 overflow: hidden;
 margin: 0 auto;
+background-size: cover;
 }
 @keyframes heartbeat {
   0% {
